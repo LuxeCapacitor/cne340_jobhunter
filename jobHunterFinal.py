@@ -45,7 +45,7 @@ def add_new_job(cursor, jobdetails):
     url = (jobdetails['url'])
     description = html2text.html2text(jobdetails['description'])
     date = jobdetails['publication_date'][0:10]
-    query = cursor.execute("INSERT INTO jobs( url, Created_at, Title, Job_id, company, Description" ") "
+    query = cursor.execute("INSERT INTO jobs(url, Created_at, Title, Job_id, company, Description" ") "
                "VALUES(%s,%s,%s,%s,%s,%s)", (url, date, title, job_id,  company, description))
      # %s is what is needed for Mysqlconnector as SQLite3 uses ? the Mysqlconnector uses %s
     return query_sql(cursor, query)
@@ -113,7 +113,7 @@ def main():
 
     while (1):  # Infinite Loops. Only way to kill it is to crash or manually crash it. We did this as a background process/passive scraper
         jobhunt(cursor)
-        time.sleep(21600)  # Sleep for 1h, this is rn every hour because API or web interfaces have request limits. Your request will get blocked.
+        time.sleep(3600)  # Sleep for 1h, this is rn every hour because API or web interfaces have request limits. Your request will get blocked.
 
 # NP
 # Sleep does a rough cycle count, system is not entirely accurate
